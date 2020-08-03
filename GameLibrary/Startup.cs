@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using GameLibrary.Models;
 
-namespace Game
+namespace GameLibrary
 {
   public class Startup
   {
@@ -25,7 +25,7 @@ namespace Game
       services.AddMvc();
 
       services.AddEntityFrameworkMySql()
-        .AddDbContext<ToDoListContext>(options => options
+        .AddDbContext<GameLibraryContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
     }
 
