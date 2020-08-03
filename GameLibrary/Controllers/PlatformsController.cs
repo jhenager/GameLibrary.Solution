@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GameLibrary.Controllers
 {
-  public class GenresController : Controller
+  public class PlatformsController : Controller
   {
 
   }
