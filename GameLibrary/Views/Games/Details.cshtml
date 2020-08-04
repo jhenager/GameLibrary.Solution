@@ -22,4 +22,6 @@
     }
   </ul>
 <h4>@Html.DisplayName("Rating"): @Html.DisplayFor(model => model.Rating)</h4>
-<p>@Html.ActionLink("Return Home", "Index")</p>
+<p>@Html.ActionLink("Delete Game", "Delete", new { id = Model.GameId })</p>
+<p>@Html.ActionLink("Edit Game info", "Edit", new { id = Model.GameId })</p>
+<p>@Html.ActionLink("Games List", "Index")</p>

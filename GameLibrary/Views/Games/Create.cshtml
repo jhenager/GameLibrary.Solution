@@ -8,7 +8,7 @@
 
 @using (Html.BeginForm())
 {
-  @Html.Label("Name")
+  @Html.Label("Name: ")
   @Html.TextBoxFor(model => model.GameName) 
   <br>
   <div id="dropdown">
@@ -19,20 +19,21 @@
   <div id="genres"></div>
   <button id="btnAddField">Add Genre</button>
   <br>
-  @Html.Label("Playstation 4")
+  @Html.Label("Playstation 4 ")
   @Html.RadioButton("PlatformId", 1)
   <br>
-  @Html.Label("Xbox One")
+  @Html.Label("Xbox One ")
   @Html.RadioButton("PlatformId", 2)
   <br>
-  @Html.Label("Nintendo Switch")
+  @Html.Label("Nintendo Switch ")
   @Html.RadioButton("PlatformId", 3)
   <br>
-  @Html.Label("PC")
+  @Html.Label("PC ")
   @Html.RadioButton("PlatformId", 4)
   <br>
-  @Html.Label("Rating")
+  @Html.Label("Rating: ")
   @Html.TextBoxFor(model => model.Rating)
+  <br>
   <input type="submit" value="add new game" class="btn btn-default">
   <br>
 }

@@ -54,6 +54,37 @@ namespace GameLibrary.Controllers
         .FirstOrDefault(games => games.GameId == id);
       return View(thisGame);
     }
-    
+
+    public ActionResult Edit(int id)
+    {
+      var thisGame = _db.Games.FirstOrDefault(games => games.GameId == id);
+      ViewBag.GenreId = new SelectList(_db.Genres, "GenreId", "GenreName");
+      return View(thisGame);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Game game, int GenreId)
+    {
+      if (GenreId != 0)
+      {
+        _db.GameGenre.Add(new GameGenre() {GenreId = GenreId, GameId = game.GameId});
+      }
+      _db.Entry(game).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+    public ActionResult Delete(int id)
+    {
+      var thisGame = _db.Games.FirstOrDefault(games => games.GameId == id);
+      return View();
+    }
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisGame = _db.Games.FirstOrDefault(games => games.GameId == id);
+      _db.Games.Remove(thisGame);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
