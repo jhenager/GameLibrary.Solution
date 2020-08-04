@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+
+@using GameLibrary.Models;
+@model GameLibrary.Models.Game
+
+<h4>Add a game</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.Label("Name")
+  @Html.TextBoxFor(model => model.GameName) 
+  <br>
+  @Html.Label("Select Genre:")
+  @Html.DropDownList("GenreId")
+  <br>
+  @Html.Label("Playstation 4")
+  @Html.RadioButton("PlatformId", 1)
+  <br>
+  @Html.Label("Xbox One")
+  @Html.RadioButton("PlatformId", 2)
+  <br>
+  @Html.Label("Nintendo Switch")
+  @Html.RadioButton("PlatformId", 3)
+  <br>
+  @Html.Label("PC")
+  @Html.RadioButton("PlatformId", 4)
+  <br>
+  <input type="submit" value="add new game" class="btn btn-default">
+  <br>
+}
+<p>@Html.ActionLink("Show all games", "Index")</p>

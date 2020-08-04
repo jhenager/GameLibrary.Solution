@@ -25,5 +25,21 @@ namespace GameLibrary.Controllers
       ViewBag.PlatformId = new SelectList(_db.Platforms, "PlatformId", "PlatformName");
       return View();
     }
+
+    [HttpPost]
+    public ActionResult Create(Game game, int GenreId, int PlatformId, string Rating)
+    {
+      _db.Games.Add(game);
+      if (GenreId != 0)
+      {
+        _db.GameGenre.Add(new GameGenre() { GenreId = GenreId, GameId = game.GameId});
+      }
+      if (PlatformId != 0)
+      {
+        _db.GamePlatform.Add(new GamePlatform() { PlatformId = PlatformId, GameId = game.GameId});
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
