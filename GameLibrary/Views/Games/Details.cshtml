@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+@model GameLibrary.Models.Game
+
+<h3>Game Details</h3>
+<hr />
+<h4>@Html.DisplayName("Name"): @Html.DisplayFor(model => model.GameName)</h4>
+<h4>@Html.DisplayName("Genres"): </h4>
+  <ul>
+    @foreach(var join in Model.Genres)
+    {
+      <li>@join.Genre.GenreName</li>
+    }
+  </ul>
+<h4>@Html.DisplayName("Platforms"): </h4>
+  <ul>
+    @foreach(var join in Model.Platforms)
+    {
+      <li>@join.Platform.PlatformName</li>
+    }
+  </ul>
+<h4>@Html.DisplayName("Rating"): @Html.DisplayFor(model => model.Rating)</h4>
+<p>@Html.ActionLink("Return Home", "Index")</p>

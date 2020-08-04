@@ -27,13 +27,16 @@ namespace GameLibrary.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Game game, int GenreId, int PlatformId, string Rating)
+    public ActionResult Create(Game game, int GenreId, int PlatformId)
     {
       _db.Games.Add(game);
-      if (GenreId != 0)
-      {
-        _db.GameGenre.Add(new GameGenre() { GenreId = GenreId, GameId = game.GameId});
-      }
+      // foreach(int Id in GenreIds)
+      // {
+        if (GenreId != 0)
+        {
+          _db.GameGenre.Add(new GameGenre() { GenreId = GenreId, GameId = game.GameId});
+        }
+      // }
       if (PlatformId != 0)
       {
         _db.GamePlatform.Add(new GamePlatform() { PlatformId = PlatformId, GameId = game.GameId});
@@ -41,5 +44,16 @@ namespace GameLibrary.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+    public ActionResult Details (int id)
+    {
+      var thisGame = _db.Games
+        .Include(game => game.Genres)
+        .ThenInclude(join => join.Genre)
+        .Include(game => game.Platforms)
+        .ThenInclude(join => join.Platform)
+        .FirstOrDefault(games => games.GameId == id);
+      return View(thisGame);
+    }
+    
   }
 }
