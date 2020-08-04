@@ -1,0 +1,52 @@
+@{
+  Layout = "_Layout";
+}
+
+@model GameLibrary.Models.Game
+
+<h4>Add a game</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.Label("Name: ")
+  @Html.TextBoxFor(model => model.GameName) 
+  <br>
+  <div id="dropdown">
+    @Html.Label("Select Genre:")
+    @Html.DropDownList("GenreId")
+  </div>
+  <br>
+  <div id="genres"></div>
+  <button id="btnAddField">Add Genre</button>
+  <br>
+  @Html.Label("Playstation 4 ")
+  @Html.RadioButton("PlatformId", 1)
+  <br>
+  @Html.Label("Xbox One ")
+  @Html.RadioButton("PlatformId", 2)
+  <br>
+  @Html.Label("Nintendo Switch ")
+  @Html.RadioButton("PlatformId", 3)
+  <br>
+  @Html.Label("PC ")
+  @Html.RadioButton("PlatformId", 4)
+  <br>
+  @Html.Label("Rating: ")
+  @Html.TextBoxFor(model => model.Rating)
+  <br>
+  <input type="submit" value="add new game" class="btn btn-default">
+  <br>
+}
+<p>@Html.ActionLink("Show all games", "Index")</p>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      let $genres = $('#genres');
+      let elem = document.querySelector('#dropdown');
+      var clone = elem.cloneNode(true);
+      $('#btnAddField').click(function(e) {
+          e.preventDefault();
+          $(clone).appendTo($genres);
+      });
+  });
+</script>
